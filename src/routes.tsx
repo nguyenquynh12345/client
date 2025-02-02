@@ -11,7 +11,8 @@ import ErrorElement from './components/shared/errorBoundary/ErrorElement';
 import TheLayout from './components/containers/TheLayout';
 import TheAuthLayout from './components/modules/auth/TheAuthLayout';
 import { authLayout } from './components/modules/auth/routes';
-import { RequireAuth } from './components/modules/auth/AuthComponents/RequireAuth';
+import DetailPostRoutes from './components/modules/default/routes';
+import SearchtRoutes from './components/modules/search/routes';
 
 
 const Table = lazy(() => {
@@ -59,6 +60,14 @@ export const publicRoutes: RouteObject[] = [
     element: <TheAuthLayout />,
     children: authLayout,
     caseSensitive: true,
+  },
+  {
+    path: '/detail-post/*',
+    element: <DetailPostRoutes />,
+  },
+  {
+    path: '/search/*',
+    element: <SearchtRoutes />,
   },
   { path: '/404', element: <Page404 /> },
   { path: '/500', element: <Page500 /> },

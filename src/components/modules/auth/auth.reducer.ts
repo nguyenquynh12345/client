@@ -115,7 +115,6 @@ const { actions, reducer } = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, { payload }: PayloadAction<any>) => {
-      console.log(payload.data.access_token, 'access_token');
 
       localStorage.setItem('authentication_token', payload.data.access_token);
       localStorage.setItem('refresh_token', payload.data.refresh_token);
