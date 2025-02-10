@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaPhone, FaRegCommentDots, FaHeart, FaShareAlt, FaFlag } from 'react-icons/fa';
 import dayjs from 'dayjs';
 import Footer from '@/components/shared/countdown/CustomFooter';
+import LatestPosts from '@/components/shared/countdown/Lastestnew';
 const DetailPost = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { params } = useRouter();
@@ -20,45 +21,6 @@ const DetailPost = () => {
   useEffect(() => {
     dispatch(getEntitie(id || '0'));
   }, [id]);
-  const posts = [
-    {
-      title: 'KÝ TÚC XÁ - QUẬN 10 - GIÁ SINH VIÊN',
-      price: '1.4 triệu/tháng',
-      time: '12 giờ trước',
-      image: 'https://vinhtuong.com/sites/default/files/2023-02/dac-diem-nha-cap-4.png',
-    },
-    {
-      title: 'PHÒNG TRỌ GIÁ RẺ GIỜ GIẤC TỰ DO GIÁ TỪ 2.3TR/THÁNG...',
-      price: '2.3 triệu/tháng',
-      time: '31 phút trước',
-      image: 'https://vinhtuong.com/sites/default/files/2023-02/dac-diem-nha-cap-4.png',
-    },
-    {
-      title: 'PHÒNG TRỌ CAO CẤP GẦN LOTTE, RMIT, PMH, BV 24/24...',
-      price: '3.5 triệu/tháng',
-      time: '6 giờ trước',
-      image: 'https://vinhtuong.com/sites/default/files/2023-02/dac-diem-nha-cap-4.png',
-    },
-    {
-      title: 'PHÒNG ĐẸP - DUPLEX - CĂN GÓC DUY NHẤT CHỈ 3,5 TR',
-      price: '3.5 triệu/tháng',
-      time: '3 giờ trước',
-      image: 'https://vinhtuong.com/sites/default/files/2023-02/dac-diem-nha-cap-4.png',
-    },
-    {
-      title: 'KÝ TÚC XÁ QUẬN 4 TRỌN GÓI 1TR150 BAO ĐIỆN NƯỚC...',
-      price: '800.000 đồng/tháng',
-      time: '4 giờ trước',
-      image: 'https://vinhtuong.com/sites/default/files/2023-02/dac-diem-nha-cap-4.png',
-    },
-    {
-      title: 'KÝ TÚC XÁ QUẬN 7 TRỌN GÓI 1TR GẦN LOTTE MART',
-      price: '700.000 đồng/tháng',
-      time: '1 ngày trước',
-      image: 'https://vinhtuong.com/sites/default/files/2023-02/dac-diem-nha-cap-4.png',
-    },
-  ];
-
   return (
     <div>
       <CustomHeader></CustomHeader>
@@ -182,26 +144,7 @@ const DetailPost = () => {
               </div>
             </div>
 
-            <div className="border rounded p-4 bg-white shadow-sm mt-4">
-              <h2 className="text-primary mb-4">Tin đăng nổi bật</h2>
-              <div className="list-group">
-                {posts.map((post, index) => (
-                  <div key={index} className="list-group-item d-flex align-items-center border-0 border-bottom pb-3">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="img-thumbnail"
-                      style={{ width: '60px', height: '60px' }}
-                    />
-                    <div className="ms-3">
-                      <h6 className="text-danger mb-1">{post.title}</h6>
-                      <p className="text-success fw-bold mb-1">{post.price}</p>
-                      <p className="text-muted small mb-0">{post.time}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <LatestPosts></LatestPosts>
           </div>
         </div>
       </div>
