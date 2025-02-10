@@ -2,121 +2,133 @@ import { RootState } from '@/reducers';
 import { IInitialState } from '@/shared/shared-interfaces';
 import { PayloadAction, createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit';
 
-import { createEntity, getEntitie, getEntities, removeEntity, updateEntity } from './api';
-import { IUser } from '@/shared/model/user.model';
+import { createEntity, getEntitie, getEntities, getListUpTop, removeEntity, updateEntity } from './api';
 
 export const initialExpertFilter = {
-    page: 0,
-    size: 10,
+  page: 0,
+  size: 10,
 };
 export interface IPostState extends IInitialState {
-    detailPost?: any
+  detailPost?: any;
+  listUpTop?: any;
 }
 const initialState: IPostState = {
-    fetchEntitiesSuccess: false,
-    fetchEntitySuccess: false,
-    updateEntitySuccess: false,
-    deleteEntitySuccess: false,
-    loading: false,
-    errorMessage: null,
-    errorCode: null,
-    totalItems: 0,
-    totalPages: 0,
-    detailPost: undefined
+  fetchEntitiesSuccess: false,
+  fetchEntitySuccess: false,
+  updateEntitySuccess: false,
+  deleteEntitySuccess: false,
+  loading: false,
+  errorMessage: null,
+  errorCode: null,
+  totalItems: 0,
+  totalPages: 0,
+  detailPost: undefined,
+  listUpTop: undefined,
 };
 
 export const expertAdapter = createEntityAdapter({
-    selectId: ({ id }: any) => id,
+  selectId: ({ id }: any) => id,
 });
 
 const { actions, reducer } = createSlice({
-    name: 'userManagementSlice',
-    initialState: expertAdapter.getInitialState({ initialState }),
-    reducers: {
-        fetching(state) {
-            state.initialState.loading = true;
-        },
-        resetAll(state) {
-            state.initialState.fetchEntitiesSuccess = false;
-            state.initialState.fetchEntitySuccess = false;
-            state.initialState.updateEntitySuccess = false;
-            state.initialState.deleteEntitySuccess = false;
-            state.initialState.loading = false;
-            state.initialState.errorMessage = null;
-            state.initialState.errorCode = null;
-            state.initialState.totalItems = 0;
-            state.initialState.totalPages = 0;
-        },
-        resetEntity(state) {
-            state.initialState.fetchEntitiesSuccess = false;
-            state.initialState.fetchEntitySuccess = false;
-            state.initialState.updateEntitySuccess = false;
-            state.initialState.deleteEntitySuccess = false;
-            state.initialState.loading = false;
-            state.initialState.errorMessage = null;
-            state.initialState.errorCode = null;
-        },
-        resetState(state) {
-            expertAdapter.removeAll(state);
-        },
+  name: 'userManagementSlice',
+  initialState: expertAdapter.getInitialState({ initialState }),
+  reducers: {
+    fetching(state) {
+      state.initialState.loading = true;
     },
-    extraReducers: (builder) => {
-        builder.addCase(getEntities.fulfilled.type, (state, { payload }: PayloadAction<any>) => {
-            state.initialState.totalItems = payload.totalItems;
-            state.initialState.totalPages = payload.totalPages;
-            expertAdapter.setAll(state, payload);
-            state.initialState.fetchEntitiesSuccess = true;
-            state.initialState.loading = false;
-        });
-        builder.addCase(getEntities.rejected.type, (state, { payload }: PayloadAction<any>) => {
-            state.initialState.errorMessage = payload?.message;
-            state.initialState.errorCode = payload?.code;
-            state.initialState.fetchEntitiesSuccess = false;
-            state.initialState.loading = false;
-        });
-        builder.addCase(getEntitie.fulfilled.type, (state, { payload }: PayloadAction<any>) => {
-            state.initialState.detailPost = payload;
-            state.initialState.updateEntitySuccess = true;
-            state.initialState.loading = false;
-        });
-        builder.addCase(getEntitie.rejected.type, (state, { payload }: PayloadAction<any>) => {
-            state.initialState.detailPost = undefined;
-            state.initialState.errorMessage = payload?.message;
-            state.initialState.errorCode = payload?.code;
-            state.initialState.updateEntitySuccess = false;
-            state.initialState.loading = false;
-        });
-        builder.addCase(createEntity.fulfilled.type, (state, _) => {
-            state.initialState.updateEntitySuccess = true;
-            state.initialState.loading = false;
-        });
-        builder.addCase(createEntity.rejected.type, (state, { payload }: PayloadAction<any>) => {
-            state.initialState.errorMessage = payload?.message;
-            state.initialState.errorCode = payload?.code;
-            state.initialState.updateEntitySuccess = false;
-            state.initialState.loading = false;
-        });
-        builder.addCase(updateEntity.fulfilled.type, (state, _) => {
-            state.initialState.updateEntitySuccess = true;
-            state.initialState.loading = false;
-        });
-        builder.addCase(updateEntity.rejected.type, (state, { payload }: PayloadAction<any>) => {
-            state.initialState.errorMessage = payload?.message;
-            state.initialState.errorCode = payload?.code;
-            state.initialState.updateEntitySuccess = false;
-            state.initialState.loading = false;
-        });
-        builder.addCase(removeEntity.fulfilled.type, (state, _) => {
-            state.initialState.deleteEntitySuccess = true;
-            state.initialState.loading = false;
-        });
-        builder.addCase(removeEntity.rejected.type, (state, { payload }: PayloadAction<any>) => {
-            state.initialState.errorMessage = payload?.message;
-            state.initialState.errorCode = payload?.code;
-            state.initialState.deleteEntitySuccess = false;
-            state.initialState.loading = false;
-        });
+    resetAll(state) {
+      state.initialState.fetchEntitiesSuccess = false;
+      state.initialState.fetchEntitySuccess = false;
+      state.initialState.updateEntitySuccess = false;
+      state.initialState.deleteEntitySuccess = false;
+      state.initialState.loading = false;
+      state.initialState.errorMessage = null;
+      state.initialState.errorCode = null;
+      state.initialState.totalItems = 0;
+      state.initialState.totalPages = 0;
     },
+    resetEntity(state) {
+      state.initialState.fetchEntitiesSuccess = false;
+      state.initialState.fetchEntitySuccess = false;
+      state.initialState.updateEntitySuccess = false;
+      state.initialState.deleteEntitySuccess = false;
+      state.initialState.loading = false;
+      state.initialState.errorMessage = null;
+      state.initialState.errorCode = null;
+    },
+    resetState(state) {
+      expertAdapter.removeAll(state);
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getEntities.fulfilled.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.totalItems = payload.totalItems;
+      state.initialState.totalPages = payload.totalPages;
+      expertAdapter.setAll(state, payload);
+      state.initialState.fetchEntitiesSuccess = true;
+      state.initialState.loading = false;
+    });
+    builder.addCase(getEntities.rejected.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.errorMessage = payload?.message;
+      state.initialState.errorCode = payload?.code;
+      state.initialState.fetchEntitiesSuccess = false;
+      state.initialState.loading = false;
+    });
+    builder.addCase(getListUpTop.fulfilled.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.listUpTop = payload;
+      state.initialState.fetchEntitiesSuccess = true;
+      state.initialState.loading = false;
+    });
+    builder.addCase(getListUpTop.rejected.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.errorMessage = payload?.message;
+      state.initialState.errorCode = payload?.code;
+      state.initialState.fetchEntitiesSuccess = false;
+      state.initialState.loading = false;
+    });
+    builder.addCase(getEntitie.fulfilled.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.detailPost = payload;
+      state.initialState.updateEntitySuccess = true;
+      state.initialState.loading = false;
+    });
+    builder.addCase(getEntitie.rejected.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.detailPost = undefined;
+      state.initialState.errorMessage = payload?.message;
+      state.initialState.errorCode = payload?.code;
+      state.initialState.updateEntitySuccess = false;
+      state.initialState.loading = false;
+    });
+    builder.addCase(createEntity.fulfilled.type, (state, _) => {
+      state.initialState.updateEntitySuccess = true;
+      state.initialState.loading = false;
+    });
+    builder.addCase(createEntity.rejected.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.errorMessage = payload?.message;
+      state.initialState.errorCode = payload?.code;
+      state.initialState.updateEntitySuccess = false;
+      state.initialState.loading = false;
+    });
+    builder.addCase(updateEntity.fulfilled.type, (state, _) => {
+      state.initialState.updateEntitySuccess = true;
+      state.initialState.loading = false;
+    });
+    builder.addCase(updateEntity.rejected.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.errorMessage = payload?.message;
+      state.initialState.errorCode = payload?.code;
+      state.initialState.updateEntitySuccess = false;
+      state.initialState.loading = false;
+    });
+    builder.addCase(removeEntity.fulfilled.type, (state, _) => {
+      state.initialState.deleteEntitySuccess = true;
+      state.initialState.loading = false;
+    });
+    builder.addCase(removeEntity.rejected.type, (state, { payload }: PayloadAction<any>) => {
+      state.initialState.errorMessage = payload?.message;
+      state.initialState.errorCode = payload?.code;
+      state.initialState.deleteEntitySuccess = false;
+      state.initialState.loading = false;
+    });
+  },
 });
 
 export const { fetching, resetAll, resetEntity, resetState } = actions;
@@ -128,5 +140,5 @@ const getExpertState = (state: RootState) => state.defReducer;
 const { selectById } = expertAdapter.getSelectors();
 
 export const selectEntityById = (id: number) => {
-    return createSelector(getExpertState, (state) => selectById(state, id));
+  return createSelector(getExpertState, (state) => selectById(state, id));
 };

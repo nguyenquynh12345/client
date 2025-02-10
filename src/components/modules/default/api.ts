@@ -2,11 +2,19 @@ import { IParams } from '@/shared/shared-interfaces';
 import axiosFactory from '@/shared/config/axios-interceptor';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export interface IExpertSearchParams extends IParams { }
+export interface IExpertSearchParams extends IParams {}
 
 export const getEntities = createAsyncThunk(`get-list-rooms`, async (params: IParams, thunkAPI) => {
   try {
     const { data } = await axiosFactory.get(`rooms`, { params });
+    return data;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+export const getListUpTop = createAsyncThunk(`get-list-rooms-top`, async (_, thunkAPI) => {
+  try {
+    const { data } = await axiosFactory.get(`rooms/list-up-top`);
     return data;
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error);
