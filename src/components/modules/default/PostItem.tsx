@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 
 const PostItem = ({ data, imageRight }: { data: any; imageRight?: boolean }) => {
   if (!data) return null;
-  console.log(data.data[0], '123123');
 
   return (
     <div className="w-100">
@@ -47,7 +46,7 @@ const PostItem = ({ data, imageRight }: { data: any; imageRight?: boolean }) => 
             <div className="post-card row" key={index}>
               <div className="col-lg-5">
                 <a href={`/detail-post/${item.id}`} className="post-images p-0">
-                  <img src={'http://103.20.102.115' + item.imageUrl} alt="Main" className="w-100 h-auto mt-3" />
+                  <img src={'http://103.20.102.115:3333' + item.imageUrl} alt="Main" className="w-100 h-auto mt-3" />
                 </a>
               </div>
               <div className="col-lg-7">

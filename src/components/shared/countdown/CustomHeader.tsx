@@ -1,5 +1,7 @@
+import { logout } from '@/components/modules/auth/auth.reducer';
 import { RootState } from '@/reducers';
 import { useRouter } from '@/shared/utils/hooks/useRouter';
+import { AppDispatch } from '@/store';
 import {
   CButton,
   CCol,
@@ -17,17 +19,17 @@ import {
   CRow,
 } from '@coreui/react-pro';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CustomHeader = () => {
   const { navigate } = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
   const [visible, setVisible] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [price, setPrice] = useState('');
   const [region, setRegion] = useState('');
   const [roomType, setRoomType] = useState('');
   const { userInfo } = useSelector((state: RootState) => state.authentication);
-  console.log(userInfo, 'userInfo');
 
   return (
     <>
@@ -64,18 +66,29 @@ const CustomHeader = () => {
                     Bộ lọc
                   </CButton>
                 </div>
-                {/* {
-                                userInfo ?
-                            } */}
-                <CDropdown>
-                  <CDropdownToggle size="sm" className="text-black bg-light border-black">
-                    Tài khoản
-                  </CDropdownToggle>
-                  <CDropdownMenu>
-                    <CDropdownItem href="/auth/login">Đăng nhập</CDropdownItem>
-                    <CDropdownItem href="/auth/register">Đăng ký</CDropdownItem>
-                  </CDropdownMenu>
-                </CDropdown>
+                {userInfo ? (
+                  <div className="text-black fw-bold gap-3 fs-6 d-flex align-items-center border py-1 px-2 rounded">
+                    <img src="https://phongtro123.com/images/default-user.svg" alt="avatar" className="avatar"></img>
+                    {userInfo.userName}
+                    <span className="cursor-pointer" onClick={() => dispatch(logout())}>
+                      <img
+                        width={20}
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS_cH_9aafFUfg6SUqtvp_LKPHIATbIRRgPA&s"
+                        alt=""
+                      />
+                    </span>
+                  </div>
+                ) : (
+                  <CDropdown>
+                    <CDropdownToggle size="sm" className="text-black bg-light border-black">
+                      Tài khoản
+                    </CDropdownToggle>
+                    <CDropdownMenu>
+                      <CDropdownItem href="/auth/login">Đăng nhập</CDropdownItem>
+                      <CDropdownItem href="/auth/register">Đăng ký</CDropdownItem>
+                    </CDropdownMenu>
+                  </CDropdown>
+                )}
               </div>
             </CCol>
           </CRow>
