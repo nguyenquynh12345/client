@@ -18,11 +18,11 @@ const LatestPosts = () => {
     <div className=" p-3">
       <h5 className="fw-bold">Tin mới đăng</h5>
       <ul className="list-unstyled">
-        {data[0]?.map((post: any, index: number) => (
+        {data?.map((post: any, index: number) => (
           <li key={index} className="d-flex mb-3 border-bottom pb-2">
             <a href={`/detail-post/${post.id}`} className="text-decoration-none text-dark fw-semibold d-block">
               <img
-                src={'http://103.20.102.115:3333' + post.imageUrl}
+                src={'http://localhost:3333' + post.images[0].url}
                 alt={post.roomName}
                 className="me-2 rounded"
                 style={{ width: '120px', height: '100px', objectFit: 'cover' }}

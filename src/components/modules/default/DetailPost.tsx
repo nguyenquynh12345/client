@@ -32,7 +32,7 @@ const DetailPost = () => {
                 <CRow>
                   <CCol lg={6}>
                     <img
-                      src={'http://103.20.102.115:3333' + detailPost?.imageUrl}
+                      src={'http://localhost:3333' + detailPost?.imageUrl}
                       alt="Room Image"
                       className="w-100 h-100 object-cover main-img"
                     />
@@ -41,14 +41,14 @@ const DetailPost = () => {
                     <CRow>
                       <CCol lg={6}>
                         <img
-                          src={'http://103.20.102.115:3333' + detailPost?.imageUrl}
+                          src={'http://localhost:3333' + detailPost?.imageUrl}
                           alt="Room Image"
                           className="w-100 h-100 object-cover main-img"
                         />
                       </CCol>
                       <CCol lg={6}>
                         <img
-                          src={'http://103.20.102.115:3333' + detailPost?.imageUrl}
+                          src={'http://localhost:3333' + detailPost?.imageUrl}
                           alt="Room Image"
                           className="w-100 h-100 object-cover main-img"
                         />
@@ -57,14 +57,14 @@ const DetailPost = () => {
                     <CRow className="mt-3">
                       <CCol lg={6}>
                         <img
-                          src={'http://103.20.102.115:3333' + detailPost?.imageUrl}
+                          src={'http://localhost:3333' + detailPost?.imageUrl}
                           alt="Room Image"
                           className="w-100 h-100 object-cover main-img"
                         />
                       </CCol>
                       <CCol lg={6}>
                         <img
-                          src={'http://103.20.102.115:3333' + detailPost?.imageUrl}
+                          src={'http://localhost:3333' + detailPost?.imageUrl}
                           alt="Room Image"
                           className="w-100 h-100 object-cover main-img"
                         />
