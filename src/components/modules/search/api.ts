@@ -8,9 +8,9 @@ export const getEntities = createAsyncThunk(
             const params = new URLSearchParams();
             if (q) params.append('q', q);
             if (price) params.append('price', price);
-            if (region) params.append('region', region.toString());
-            if (categories) params.append('categories', categories.toString());
-            const { data } = await axiosFactory.get(`search/rooms?${params.toString()}`);
+            if (region) params.append('location', region.toString());
+            if (categories) params.append('category', categories.toString());
+            const { data } = await axiosFactory.get(`listings/search?${params.toString()}`);
             return data;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error);

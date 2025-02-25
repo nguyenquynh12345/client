@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 const PostItem = ({ data, imageRight }: { data: any; imageRight?: boolean }) => {
   if (!data) return null;
-  console.log(data);
+  console.log(data[0]);
 
   return (
     <div className="w-100">
@@ -43,7 +43,7 @@ const PostItem = ({ data, imageRight }: { data: any; imageRight?: boolean }) => 
             </div>
           </div>
         ))
-        : data?.map((item: any, index: number) => (
+        : data[0]?.map((item: any, index: number) => (
           <div className="post-card row" key={index}>
             <div className="col-lg-5">
               <a href={`/detail-post/${item.id}`} className="post-images p-0">
@@ -53,7 +53,7 @@ const PostItem = ({ data, imageRight }: { data: any; imageRight?: boolean }) => 
             <div className="col-lg-7">
               <div className="post-content">
                 <a href={`/detail-post/${item.id}`} className="post-title">
-                  {item.roomName}
+                  {item.title}
                 </a>
                 <div className="stars">{'★'.repeat(5)}</div>
                 <div className="">

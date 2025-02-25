@@ -78,7 +78,7 @@ const { actions, reducer } = createSlice({
       state.refreshToken = null;
       state.userInfo = null;
       state.userKeycloakInfo = null;
-      localStorage.removeItem('authentication_token');
+      localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
     },
     resetAll(state) {
@@ -116,16 +116,14 @@ const { actions, reducer } = createSlice({
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, { payload }: PayloadAction<any>) => {
 
-      localStorage.setItem('authentication_token', payload.data.access_token);
-      localStorage.setItem('refresh_token', payload.data.refresh_token);
+      localStorage.setItem('access_token', payload.access_token);
       state.token = payload.access_token;
       state.refreshToken = payload.refresh_token;
       state.loginSuccess = true;
       state.loading = false;
     });
     builder.addCase(login.rejected, (state, { payload }: PayloadAction<any>) => {
-      localStorage.removeItem('authentication_token');
-      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('access_token');
       state.errorMessage = payload?.message;
       state.errorCode = payload?.code;
       state.loading = false;
@@ -138,7 +136,7 @@ const { actions, reducer } = createSlice({
       state.loadingUserInfo = false;
     });
     builder.addCase(getUserInfo.rejected, (state, { payload }: PayloadAction<any>) => {
-      localStorage.removeItem('authentication_token');
+      localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
       state.getAccountSuccess = false;
       state.loadingUserInfo = false;

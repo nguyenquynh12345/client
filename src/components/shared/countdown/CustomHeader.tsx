@@ -69,7 +69,7 @@ const CustomHeader = () => {
                 {userInfo ? (
                   <div className="text-black fw-bold gap-3 fs-6 d-flex align-items-center border py-1 px-2 rounded">
                     <img src="https://phongtro123.com/images/default-user.svg" alt="avatar" className="avatar"></img>
-                    {userInfo.userName}
+                    {userInfo.email}
                     <span className="cursor-pointer" onClick={() => dispatch(logout())}>
                       <img
                         width={20}
@@ -109,10 +109,10 @@ const CustomHeader = () => {
               size="sm"
               options={[
                 { label: 'Loại nhà', value: '' },
-                { label: 'Nhà cấp 4', value: 'otp1' },
-                { label: 'Chung cư mini', value: 'otp2' },
-                { label: 'Chung cư', value: 'otp3' },
-                { label: 'Nhà nguyên căn', value: 'otp4' },
+                { label: 'Nhà cấp 4', value: '6' },
+                { label: 'Chung cư mini', value: '7' },
+                { label: 'Chung cư', value: '3' },
+                { label: 'Nhà nguyên căn', value: '8' },
               ]}
               width="120"
               className="bg-light text-black"
@@ -122,11 +122,10 @@ const CustomHeader = () => {
               size="sm"
               options={[
                 { label: 'Khu vực', value: '' },
-                { label: 'Bắc từ liêm', value: '1' },
-                { label: 'Nam từ liêm', value: '2' },
-                { label: 'Đống đa', value: '3' },
-                { label: 'Cầu giấy', value: '4' },
-                { label: 'Hoàng mai', value: '5' },
+                { label: 'Bắc từ liêm', value: '4' },
+                { label: 'Nam từ liêm', value: '7' },
+                { label: 'Đống đa', value: '5' },
+                { label: 'Hà đông', value: '8' },
               ]}
               width="120"
               className="bg-light text-black"
@@ -136,11 +135,11 @@ const CustomHeader = () => {
               size="sm"
               options={[
                 { label: 'Chọn giá', value: '' },
-                { label: '1.000.000đ', value: 'price1' },
-                { label: '1.000.000đ - 2.000.000đ', value: 'price2' },
-                { label: '2.000.000đ - 5.000.000đ', value: 'price3' },
-                { label: '5.000.000đ - 10.000.000đ', value: 'price4' },
-                { label: 'Trên 10.000.000đ', value: 'price5' },
+                { label: '1.000.000đ', value: '0-1000000' },
+                { label: '1.000.000đ - 2.000.000đ', value: '1000000-2000000' },
+                { label: '2.000.000đ - 5.000.000đ', value: '2000000-5000000' },
+                { label: '5.000.000đ - 10.000.000đ', value: '5000000-10000000' },
+                { label: 'Trên 10.000.000đ', value: '10000000-100000000' },
               ]}
               width="120"
               className="bg-light text-black"

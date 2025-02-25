@@ -7,7 +7,7 @@ const prefix = 'auth';
 const userPrefix = 'user';
 
 export interface ILoginForm {
-  userName: string;
+  email: string;
   password: string;
   rePassword?: string;
 }
@@ -29,14 +29,22 @@ export const registerBill = createAsyncThunk(`register`, async (body: ILoginForm
   }
 });
 
-export const getUserInfo = createAsyncThunk(`get-${userPrefix}-info`, async (_, thunkAPI) => {
-  try {
-    const { data } = await axios.get(`/users/profile`);
-    return data;
-  } catch (error: any) {
-    return thunkAPI.rejectWithValue(error.response.data);
+export const getUserInfo = createAsyncThunk(
+  `get-${userPrefix}-info`,
+  async (_, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("access_token");
+      const { data } = await axios.get(`/users/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
   }
-});
+);
 
 export interface IUpdateUserInfo {
   firstName: string;

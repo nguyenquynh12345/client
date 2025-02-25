@@ -33,7 +33,7 @@ const Login = () => {
   const { userInfo, errorCode, loginSuccess } = useSelector((state: RootState) => state.authentication);
   const formikRef = useRef<FormikProps<ILoginForm>>(null);
   const validationSchema = Yup.object().shape({
-    userName: Yup.string().trim().required(t('app.global.validation.required')),
+    email: Yup.string().trim().required(t('app.global.validation.required')),
     password: Yup.string().trim().required(t('app.global.validation.required')),
   });
 
@@ -59,7 +59,7 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo]);
 
-  const initialValues: ILoginForm = { userName: '', password: '' };
+  const initialValues: ILoginForm = { email: '', password: '' };
 
   return (
     <div className="responsive-container">
@@ -86,19 +86,19 @@ const Login = () => {
                             <CFormLabel>{t('app.global.form.label.username')}</CFormLabel>
 
                             <CFormInput
-                              value={values.userName}
+                              value={values.email}
                               onChange={handleChange}
                               type="text"
-                              id="userName"
-                              name="userName"
+                              id="email"
+                              name="email"
                               autoComplete="none"
-                              placeholder={t('app.global.form.placeholder.username')}
+                              placeholder={t('app.global.form.placeholder.email')}
                             />
                             <CFormFeedback
                               invalid
-                              className={!!errors.userName && touched.userName ? 'd-block' : 'd-none'}
+                              className={!!errors.email && touched.email ? 'd-block' : 'd-none'}
                             >
-                              {errors.userName}
+                              {errors.email}
                             </CFormFeedback>
                           </div>
 

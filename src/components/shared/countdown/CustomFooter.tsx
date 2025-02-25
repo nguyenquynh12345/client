@@ -4,7 +4,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-3">
-                        <h6>VỀ BDS123.VN</h6>
+                        <h6>VỀ CHÚNG TÔI</h6>
                         <ul className="list-unstyled">
                             <li>Trang chủ</li>
                             <li>Giới thiệu</li>
@@ -40,12 +40,6 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="col-md-3">
-                        <h6>PHƯƠNG THỨC THANH TOÁN</h6>
-                        <div className="d-flex">
-                            <img src="visa.png" alt="Visa" className="me-2" width="40" />
-                            <img src="momo.png" alt="Momo" className="me-2" width="40" />
-                            <img src="internet_banking.png" alt="Internet Banking" width="40" />
-                        </div>
                         <h6 className="mt-3">KẾT NỐI VỚI CHÚNG TÔI</h6>
                         <div>
                             <i className="bi bi-facebook me-2"></i>

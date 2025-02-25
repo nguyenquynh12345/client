@@ -89,23 +89,6 @@ const TheHeader = ({ notAuth }: ITheHeaderProps) => {
           )}
         </div>
         <div className={`custom-header-nav justify-content-end`}>
-          {/* {!notAuth ? (
-            <CHeaderNav className="custom-header-title">
-              {headerTitleArr.map((item, index) => {
-                const className = handleItemVisibilityDependsRoles(item.roles, userInfo);
-                return (
-                  <CNavItem key={index} className={className}>
-                    <CNavLink active={checkIsMatchPath({ path: item.to, end: false }, pathname)} as={Link} to={item.to}>
-                      {t(`app.assetSidebar.${item.name}`)}
-                    </CNavLink>
-                  </CNavItem>
-                );
-              })}
-            </CHeaderNav>
-          ) : (
-            ''
-          )} */}
-
           <CHeaderNav className="custom-header-widget ">
             {!notAuth ? (
               <>

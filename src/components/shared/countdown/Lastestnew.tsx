@@ -23,14 +23,14 @@ const LatestPosts = () => {
             <a href={`/detail-post/${post.id}`} className="text-decoration-none text-dark fw-semibold d-block">
               <img
                 src={'http://localhost:3333' + post.images[0].url}
-                alt={post.roomName}
+                alt={post.title}
                 className="me-2 rounded"
                 style={{ width: '120px', height: '100px', objectFit: 'cover' }}
               />
             </a>
             <div>
               <a href={`/detail-post/${post.id}`} className="text-decoration-none text-dark fw-semibold d-block">
-                {post.roomName}
+                {post.title}
               </a>
               <span className="text-success fw-bold">{insertCommas(post.price)}</span>
               <small className="text-muted d-block">{dayjs(post.created_at).format('DD/MM/YYYY')}</small>

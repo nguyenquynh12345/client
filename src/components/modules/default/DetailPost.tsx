@@ -75,7 +75,7 @@ const DetailPost = () => {
               </div>
 
               <div className="mt-4">
-                <h2 className="text-primary fw-bold">{detailPost?.roomName}</h2>
+                <h2 className="text-primary fw-bold">{detailPost?.title}</h2>
                 <p className="text-success fs-4 fw-semibold">{insertCommas(detailPost?.price)} VNĐ/tháng</p>
               </div>
 
